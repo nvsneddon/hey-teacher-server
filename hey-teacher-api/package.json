@@ -1,0 +1,17 @@
+{
+  "name": "hey-teacher-api",
+  "version": "1.0.0",
+  "description": "This is the seapi for the final project called \"Hey Teacher\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nathaniel Sneddon",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {}
+}
