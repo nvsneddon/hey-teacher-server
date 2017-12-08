@@ -18,14 +18,9 @@ io.on('connection', function(socket){
      openRooms.push(room);
      console.log("New room has been created: " + room);
    });
-<<<<<<< HEAD
-   socket.on('button', function(data){
-=======
-   socket.on('Message', function(data){
->>>>>>> e83945a0c7b033779eda2f3c1e972665703f2ee1
-     console.log(openRooms.toString());
-     var req = JSON.parse(data);
-     console.log("The name of the person is " + req.Name);
-     console.log('This is the message the person sent ' + req.Message);
-   });
-});
+socket.on('Message', function(data){
+   console.log(openRooms.toString());
+   var req = JSON.parse(data);
+   console.log("The name of the person is " + req.Name);
+   console.log('This is the message the person sent ' + req.Message);
+ });
