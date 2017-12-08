@@ -11,6 +11,12 @@ var server = app.listen(8080, '0.0.0.0', function(){
 
 var io = socket(server);
 
+function disconnectRoom(roomNr){
+  openRooms.splice(openRooms.indexof(roomNr), 1);
+  console.log(openRooms.toString());
+  //todo Disconnect others in room from the room
+}
+
 io.on('connection', function(socket){
    console.log('made socket connection');
    socket.on('room', function(room){
@@ -18,7 +24,8 @@ io.on('connection', function(socket){
      openRooms.push(room);
      console.log("New room has been created: " + room);
    });
-socket.on('Message', function(data){
-   //add a function here
- });
+  socket.on('teacher-disconnect', function(roomNr){
+     console.log("The teacher from room number " + roomNr + " has disconnected");
+     disconnectRoom();
+   });
 });
