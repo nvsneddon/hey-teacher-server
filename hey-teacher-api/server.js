@@ -18,7 +18,10 @@ io.on('connection', function(socket){
      openRooms.push(room);
      console.log("New room has been created: " + room);
    });
-   socket.on('button', function(args){
+   socket.on('button', function(namePakcet){
      console.log(openRooms.toString());
+     var req = JSON.parse(namePacket);
+     console.log("The name of the person is " + req.Name);
+     console.log('This is the message the person sent ' + req.Message);
    });
 });
