@@ -24,3 +24,4 @@ socket.on('Message', function(data){
    console.log("The name of the person is " + req.Name);
    console.log('This is the message the person sent ' + req.Message);
  });
+});
