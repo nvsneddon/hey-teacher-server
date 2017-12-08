@@ -12,7 +12,7 @@ var server = app.listen(8080, '0.0.0.0', function(){
 var io = socket(server);
 
 function disconnectRoom(roomNr){
-  openRooms.splice(openRooms.indexof(roomNr), 1);
+  openRooms.splice(openRooms.indexOf(roomNr), 1);
   console.log(openRooms.toString());
   //todo Disconnect others in room from the room
 }
