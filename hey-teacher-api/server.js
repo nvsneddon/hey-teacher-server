@@ -26,6 +26,6 @@ io.on('connection', function(socket){
    });
   socket.on('teacher-disconnect', function(roomNr){
      console.log("The teacher from room number " + roomNr + " has disconnected");
-     disconnectRoom();
+     disconnectRoom(roomNr);
    });
 });
