@@ -19,7 +19,7 @@ function disconnectRoom(roomNr){
 
 io.on('connection', function(socket){
    console.log('made socket connection');
-   socket.on('room', function(room){
+   socket.on('teacher-room', function(room){
      socket.join(room);
      openRooms.push(room);
      console.log("New room has been created: " + room);
