@@ -35,7 +35,7 @@ Hence the need for a do while loop.
 function generateRoomCode(){
   do{
     var rmCode = Math.floor(Math.random() * 10000);
-  } while (!roomCodeExists(rmCode));
+  } while (roomCodeExists(rmCode));
   return rmCode;
 }
 
