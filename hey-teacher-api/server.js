@@ -48,6 +48,7 @@ io.on('connection', function(socket){
      console.log("New room has been created: " + room);
    });*/
    socket.on('teacher-connect', function(name){
+     console.log("Teacher has connected");
      var roomCode = generateRoomCode();
      var roomNumber = roomObjects.length;
      roomObjects[roomNumber] = new RoomObject(roomCode, name);
@@ -57,6 +58,7 @@ io.on('connection', function(socket){
        'roomCode': roomCode
      };
      io.sockets.in(roomNumber).emit('get-roomcode', emitObject);
+     console.log("Other end of teacher connecting!");
 
    });
   socket.on('teacher-disconnect', function(roomNr){
