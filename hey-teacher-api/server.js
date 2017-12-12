@@ -50,6 +50,11 @@ function RoomObject(roomCode, name){
   this.teacherName = name;
   this.waitlist = [];
 }
+function printArray(){
+	for(x in roomObjects){
+		console.log("Room ID: " + x.room_id + "\tTeacher: " + x.teacherName); 
+	}
+}
 
 io.on('connection', function(socket){
    console.log('Made socket connection');
@@ -63,6 +68,7 @@ io.on('connection', function(socket){
      var roomCode = generateRoomCode();
      roomObjects.push(new RoomObject(roomCode, name));
      socket.join(roomCode);
+	printArray();
      var emitObject = {
        'roomCode': roomCode
      };
