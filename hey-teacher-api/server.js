@@ -56,7 +56,7 @@ io.on('connection', function(socket){
        'roomNr': roomNumber,
        'roomCode': roomCode
      };
-     io.sockets.in(roomNumber).emit('get-roomcode', roomCode);
+     io.sockets.in(roomNumber).emit('get-roomcode', emitObject);
 
    });
   socket.on('teacher-disconnect', function(roomNr){
