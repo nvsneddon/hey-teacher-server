@@ -27,9 +27,9 @@ function generateRoomCode(){
     var rmCode = Math.floor(Math.random() * 10000);
   } while (function(){
     for(x in roomObjects){
-      if (x.room_id === rmCode) return true;
+      if (x.room_id === rmCode) return false;
     }
-    return false;
+    return true;
   });
   return rmCode;
 }
