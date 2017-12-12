@@ -12,8 +12,11 @@ var server = app.listen(8080, '0.0.0.0', function(){
 var io = socket(server);
 
 function disconnectRoom(roomNr){
-  roomObjects.splice(roomNr, 1);
+  var index = indexOfRoomCode(roomNr);
+  if(index != -1){
+    roomObjects.splice(index, 1);
   //todo Disconnect others in room from the room
+  }
 }
 
 function roomCodeExists(rmCode){
@@ -21,6 +24,13 @@ function roomCodeExists(rmCode){
     if (x.room_id === rmCode) return true;
   }
   return false;
+}
+
+function indexOfRoomCode(rmCode){
+  for(var i = 0; i < roomObjects.length; i++){
+    if(roomObjects[i].room_id == rmCode) return i;
+  }
+  return -1;
 }
 
 
@@ -51,18 +61,16 @@ io.on('connection', function(socket){
    socket.on('teacher-connect', function(name){
      console.log(name + " has connected");
      var roomCode = generateRoomCode();
-     var roomNumber = roomObjects.length;
-     roomObjects[roomNumber] = new RoomObject(roomCode, name);
-     socket.join(roomNumber);
+     roomObjects.push(new RoomObject(roomCode, name));
+     socket.join(roomCode);
      var emitObject = {
-       'roomNr': roomNumber,
        'roomCode': roomCode
      };
      io.sockets.in(roomNumber).emit('get-roomcode', emitObject);
    });
-  socket.on('teacher-disconnect', function(roomNr){
-     console.log("The teacher from room number " + roomNr + " has disconnected");
-     socket.leave(roomNr);
-     disconnectRoom(roomNr);
+  socket.on('teacher-disconnect', function(roomCode){
+     console.log("The teacher from room number " + roomCode + " has disconnected");
+     socket.leave(roomCode);
+     disconnectRoom(roomCode);
    });
 });
