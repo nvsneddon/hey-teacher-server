@@ -13,7 +13,6 @@ var io = socket(server);
 
 function disconnectRoom(roomNr){
   roomObjects.splice(roomNr, 1);
-  console.log(RoomObject.toString());
   //todo Disconnect others in room from the room
 }
 
@@ -54,6 +53,7 @@ io.on('connection', function(socket){
      var roomCode = generateRoomCode();
      var roomNumber = roomObjects.length;
      roomObjects[roomNumber] = new RoomObject(roomCode, name);
+     console.log(roomObjects[roomNumber]);
      socket.join(roomNumber);
      var emitObject = {
        'roomNr': roomNumber,
