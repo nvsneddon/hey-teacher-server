@@ -53,7 +53,6 @@ io.on('connection', function(socket){
      var roomCode = generateRoomCode();
      var roomNumber = roomObjects.length;
      roomObjects[roomNumber] = new RoomObject(roomCode, name);
-     console.log(roomObjects[roomNumber]);
      socket.join(roomNumber);
      var emitObject = {
        'roomNr': roomNumber,
