@@ -17,6 +17,16 @@ function disconnectRoom(roomNr){
   //todo Disconnect others in room from the room
 }
 
+roomCodeExists(rmCode){
+  /*
+  for(x in roomObjects){
+    if (x.room_id === rmCode) return true;
+  }
+  return false;
+  */
+  return false;
+}
+
 
 /*
 *Generates a random number and checks to see if the number happens to be used already.
@@ -25,12 +35,7 @@ Hence the need for a do while loop.
 function generateRoomCode(){
   do{
     var rmCode = Math.floor(Math.random() * 10000);
-  } while (function(){
-    for(x in roomObjects){
-      if (x.room_id === rmCode) return false;
-    }
-    return true;
-  });
+  } while (!roomCodeExists(rmCode));
   return rmCode;
 }
 
