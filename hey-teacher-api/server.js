@@ -52,6 +52,10 @@ io.on('connection', function(socket){
      var roomNumber = roomObjects.length;
      roomObjects[roomNumber] = new RoomObject(roomCode, name);
      socket.join(roomNumber);
+     var emitObject = {
+       'roomNr': roomNumber,
+       'roomCode': roomCode
+     };
      io.sockets.in(roomNumber).emit('get-roomcode', roomCode);
 
    });
