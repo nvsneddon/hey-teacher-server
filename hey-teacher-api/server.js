@@ -17,7 +17,7 @@ function disconnectRoom(roomNr){
   //todo Disconnect others in room from the room
 }
 
-roomCodeExists(rmCode){
+function roomCodeExists(rmCode){
   /*
   for(x in roomObjects){
     if (x.room_id === rmCode) return true;
