@@ -34,7 +34,7 @@ function generateRoomCode(){
   return rmCode;
 }
 
-function RoomObject(var roomCode, var name){
+function RoomObject(roomCode, name){
   this.room_id = roomCode;
   this.teacherName = name;
   this.waitlist = [];
