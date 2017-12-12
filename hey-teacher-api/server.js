@@ -43,14 +43,14 @@ function RoomObject(roomCode, name){
 }
 
 io.on('connection', function(socket){
-   console.log('made socket connection');
+   console.log('Made socket connection');
   /* socket.on('teacher-room', function(room){
      socket.join(room);
      openRooms.push(room);
      console.log("New room has been created: " + room);
    });*/
    socket.on('teacher-connect', function(name){
-     console.log("Teacher has connected");
+     console.log(name + " has connected");
      var roomCode = generateRoomCode();
      var roomNumber = roomObjects.length;
      roomObjects[roomNumber] = new RoomObject(roomCode, name);
@@ -60,8 +60,6 @@ io.on('connection', function(socket){
        'roomCode': roomCode
      };
      io.sockets.in(roomNumber).emit('get-roomcode', emitObject);
-     console.log("Other end of teacher connecting!");
-
    });
   socket.on('teacher-disconnect', function(roomNr){
      console.log("The teacher from room number " + roomNr + " has disconnected");
