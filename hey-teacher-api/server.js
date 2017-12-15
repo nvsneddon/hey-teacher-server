@@ -51,8 +51,8 @@ function RoomObject(roomCode, name){
   this.waitlist = [];
 }
 function printArray(){
-	for(x in roomObjects){
-		console.log("Room ID: " + x.room_id + "\tTeacher: " + x.teacherName);
+	for(var i = 0; i < roomObjects.length; i++){
+		console.log("Room ID: " + roomObjects[i].room_id + "\tTeacher: " + roomObjects[i].teacherName);
 	}
 }
 
@@ -66,7 +66,7 @@ io.on('connection', function(socket){
    socket.on('teacher-connect', function(name){
      console.log(name + " has connected");
      var roomCode = generateRoomCode();
-     roomObjects.push(new RoomObject(roomCode, name));
+     roomObjects.push();
      socket.join(roomCode);
 	    printArray();
      var emitObject = {
