@@ -66,7 +66,7 @@ io.on('connection', function(socket){
    socket.on('teacher-connect', function(name){
      console.log(name + " has connected");
      var roomCode = generateRoomCode();
-     roomObjects.push();
+     roomObjects.push(new RoomObject(roomCode, name));
      socket.join(roomCode);
 	    printArray();
      var emitObject = {
