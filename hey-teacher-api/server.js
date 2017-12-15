@@ -2,7 +2,7 @@ const express = require('express');
 const socket = require('socket.io');
 const EventEmitter = require('events');
 const app = express();
-const server = app.listen(3000, '0.0.0.0', function(){
+const server = app.listen(8080, '0.0.0.0', function(){
     console.log("Listening on port 3000");
 });
 const io = socket(server);
