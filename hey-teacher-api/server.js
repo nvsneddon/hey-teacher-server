@@ -52,7 +52,7 @@ function generateRoomCode(){
 
 function RoomObject(roomCode, name, person_id){
   this.room_id = roomCode;
-  this.teacher = new Array({
+  this.teachers = new Array({
     "name":name,
     "person_id":person_id
   });
