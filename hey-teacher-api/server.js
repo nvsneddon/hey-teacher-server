@@ -85,17 +85,11 @@ io.on('connection', function(socket){
      disconnectRoom(roomCode);
    });
    socket.on('student-connect', function(name, roomCode){
-     /*
-	   console.log(data);
-     var dataobj = JSON.parse(data);
-	   var roomCode = dataobj.roomCode;
-     console.log(roomCode);*/
-	console.log(roomCode+ name);
+	    console.log(roomCode+ name);
 
      if(roomCodeExists(roomCode)){
        var index = indexOfRoomCode(roomCode);
-       var response = JSON.stringify(roomObjects[index].teachers);
-       io.sockets.in(socket.id).emit('student-successful', response);
+       io.sockets.in(socket.id).emit('student-successful', roomObjects[index].teachers);
      }else{
        io.sockets.in(socket.id).emit('student-unsuccessful', "Loser");
      }
