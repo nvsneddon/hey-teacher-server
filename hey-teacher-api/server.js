@@ -59,7 +59,7 @@ function RoomObject(roomCode, name, person_id){
   this.waitlist = [];
   this.printRoomStats = function(){
     console.log("Room ID: " + this.room_id );
-    console.log("Teachers in room: " this.teachers)
+    console.log("Teachers in room: " + this.teachers)
   };
 }
 
