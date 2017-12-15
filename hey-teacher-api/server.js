@@ -86,7 +86,7 @@ io.on('connection', function(socket){
      var emitObject = {
        'roomCode': roomCode
      };
-     io.sockets.in(roomCode).emit('get-roomcode', emitObject);
+     io.sockets.in(socket.id).emit('get-roomcode', emitObject);
    });
    socket.on('teacher-disconnect', function(roomCode){
      console.log("The teacher from room number " + roomCode + " has disconnected");
