@@ -52,7 +52,7 @@ function generateRoomCode(){
 
 function RoomObject(roomCode, name){
   this.room_id = roomCode;
-  this.teachers = new Array(name);
+  this.teachers = new Array("Any teacher", name);
   this.waitlist = [];
   this.printRoomStats = function(){
     console.log("Room ID: " + this.room_id + "\tTeachers" + this.teachers);
@@ -85,16 +85,19 @@ io.on('connection', function(socket){
      disconnectRoom(roomCode);
    });
    socket.on('student-connect', function(data){
-     var roomCode = JSON.parse(data).roomCode;
+	   console.log(data);
+     var dataobj = JSON.parse('{"roomCode": 1572}');
+	   var roomCode = dataobj.roomCode;
      if(roomCodeExists(roomCode)){
        var index = indexOfRoomCode(roomCode);
-
+       var response = JSON.stringify(roomObjects[index].teachers);
+       io.sockets.in(socket.id).emit('student-successful', response);
      }else{
-
+       io.sockets.in(socket.id).emit('student-unsuccessful', "Loser");
      }
    });
    socket.on('student-disconnect', function(data){
-
+     console.log("Doesn't exist");
    });
    socket.on('student-help-request', function(data){
 
