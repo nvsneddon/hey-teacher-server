@@ -50,21 +50,12 @@ function generateRoomCode(){
   return rmCode;
 }
 
-function RoomObject(roomCode, name, person_id){
+function RoomObject(roomCode, name){
   this.room_id = roomCode;
-  this.teachers = new Array({
-    "name":name,
-    "person_id":person_id
-  });
-
+  this.teachers = new Array(name);
   this.waitlist = [];
   this.printRoomStats = function(){
-    console.log("Room ID: " + this.room_id );
-    for(var i = 0; i < this.teachers.length; i++){
-      for(x in this.teachers[i]){
-        console.log(x + " " + this.teachers[i][x]);
-      }
-    }
+    console.log("Room ID: " + this.room_id + "\tTeachers" + this.teachers);
   };
 }
 
@@ -80,7 +71,7 @@ io.on('connection', function(socket){
      console.log(name + " has connected");
      var roomCode = generateRoomCode();
      console.log("Socket ID is " + socket.id);
-     roomObjects.push(new RoomObject(roomCode, name, socket.id));
+     roomObjects.push(new RoomObject(roomCode, name));
      socket.join(roomCode);
 	    printArray();
      var emitObject = {
