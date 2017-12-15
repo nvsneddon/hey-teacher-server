@@ -85,7 +85,7 @@ io.on('connection', function(socket){
      disconnectRoom(roomCode);
    });
    socket.on('student-connect', function(data){
-	console.log(data);
+	   console.log(data);
      var dataobj = JSON.parse(data);
 	   var roomCode = dataobj.roomCode;
      if(roomCodeExists(roomCode)){
