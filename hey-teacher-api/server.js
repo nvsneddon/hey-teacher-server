@@ -1,15 +1,15 @@
-var express = require('express');
-var socket = require('socket.io');
-
-var app = express();
-
-var roomObjects = [];
-
-var server = app.listen(8080, '0.0.0.0', function(){
+const express = require('express');
+const socket = require('socket.io');
+const EventEmitter = require('events');
+const app = express();
+const server = app.listen(8080, '0.0.0.0', function(){
     console.log("Listening on port 8080");
 });
+const io = socket(server);
 
-var io = socket(server);
+class MyEmitter extends EventEmitter {}
+
+var roomObjects = [];
 
 function disconnectRoom(roomNr){
   var index = indexOfRoomCode(roomNr);
