@@ -90,7 +90,7 @@ io.on('connection', function(socket){
      if(roomCodeExists(roomCode)){
        var index = indexOfRoomCode(roomCode);
 
-       io.sockets.in(socket.id).emit('student-successful', JSON.stringify(roomObjects[index].teachers));
+       io.sockets.in(socket.id).emit('student-successful', roomObjects[index].teachers.toString());
      }else{
        io.sockets.in(socket.id).emit('student-unsuccessful', "Loser");
      }
