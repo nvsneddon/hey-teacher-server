@@ -52,7 +52,7 @@ function RoomObject(roomCode, name){
 }
 function printArray(){
 	for(x in roomObjects){
-		console.log("Room ID: " + x.room_id + "\tTeacher: " + x.teacherName); 
+		console.log("Room ID: " + x.room_id + "\tTeacher: " + x.teacherName);
 	}
 }
 
@@ -68,7 +68,7 @@ io.on('connection', function(socket){
      var roomCode = generateRoomCode();
      roomObjects.push(new RoomObject(roomCode, name));
      socket.join(roomCode);
-	printArray();
+	    printArray();
      var emitObject = {
        'roomCode': roomCode
      };
@@ -78,5 +78,14 @@ io.on('connection', function(socket){
      console.log("The teacher from room number " + roomCode + " has disconnected");
      socket.leave(roomCode);
      disconnectRoom(roomCode);
+   });
+   socket.on('student-connect', function(data){
+
+   });
+   socket.on('student-disconnect', function(data){
+
+   });
+   socket.on('student-help-request', function(data){
+
    });
 });
