@@ -55,8 +55,8 @@ function RoomObject(roomCode, name, person_id){
   this.teachers = new Array({
     "name":name,
     "person_id":person_id
-
   });
+
   this.waitlist = [];
   this.printRoomStats = function(){
     console.log("Room ID: " + this.room_id );
@@ -86,7 +86,7 @@ io.on('connection', function(socket){
      var emitObject = {
        'roomCode': roomCode
      };
-     io.sockets.in(roomCode).emit('get-roomcode', emitObject);
+     io.sockets.in(socket.id).emit('get-roomcode', emitObject);
    });
    socket.on('teacher-disconnect', function(roomCode){
      console.log("The teacher from room number " + roomCode + " has disconnected");
