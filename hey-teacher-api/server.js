@@ -52,13 +52,14 @@ function generateRoomCode(){
 
 function RoomObject(roomCode, name, person_id){
   this.room_id = roomCode;
-  this.teacherName = new Array({
+  this.teacher = new Array({
     "name":name,
     "person_id":person_id
   });
   this.waitlist = [];
   this.printRoomStats = function(){
-    console.log("Room ID: " + this.room_id + "\tTeachers: " + this.teacherName.toString());
+    console.log("Room ID: " + this.room_id );
+    console.log("Teachers in room: " this.teachers)
   };
 }
 
