@@ -18,8 +18,9 @@ function disconnectRoom(roomNr){
     roomObjects.splice(index, 1);
   //todo Disconnect others in room from the room
   }
-  console.log(index);
+  console.log("The found idex is " + index);
   printArray();
+  console.log("The length of the array now is " roomObjects.length);
 }
 
 function roomCodeExists(rmCode){
