@@ -9,16 +9,17 @@ const io = socket(server);
 
 class MyEmitter extends EventEmitter {}
 
+const theEmitter = new MyEmitter();
+
+
 var roomObjects = [];
 
 function disconnectRoom(roomNr){
   var index = indexOfRoomCode(roomNr);
   if(index != -1){
-
     roomObjects.splice(index, 1);
-  //todo Disconnect others in room from the room
   }
-  console.log("The found idex is " + index);
+  console.log("The found index is " + index);
   printArray();
   console.log("The length of the array now is " roomObjects.length);
 }
@@ -53,12 +54,19 @@ function RoomObject(roomCode, name){
   this.room_id = roomCode;
   this.teacherName = name;
   this.waitlist = [];
+  this.printRoomStats = function(){
+    console.log("Room ID: " + this.room_id + "\tTeacher: " + this.teacherName);
+  };
 }
 function printArray(){
 	for(var i = 0; i < roomObjects.length; i++){
-		console.log("Room ID: " + roomObjects[i].room_id + "\tTeacher: " + roomObjects[i].teacherName);
+		roomObjects[i].printRoomstats();
 	}
 }
+
+theEmitter.on('empty-room', (roomNumber) => {
+  //Destroy room
+});
 
 io.on('connection', function(socket){
    console.log('Made socket connection');
@@ -78,7 +86,7 @@ io.on('connection', function(socket){
      };
      io.sockets.in(roomCode).emit('get-roomcode', emitObject);
    });
-  socket.on('teacher-disconnect', function(roomCode){
+   socket.on('teacher-disconnect', function(roomCode){
      console.log("The teacher from room number " + roomCode + " has disconnected");
      socket.leave(roomCode);
      disconnectRoom(roomCode);
