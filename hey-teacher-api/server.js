@@ -86,18 +86,17 @@ io.on('connection', function(socket){
    });
    socket.on('student-connect', function(data){
 	   console.log(data);
-     var dataobj = JSON.parse('{"roomCode": 1572}');
-	   //console.log(data);
      var dataobj = JSON.parse(data);
 	   var roomCode = dataobj.roomCode;
      console.log(roomCode);
+/*
      if(roomCodeExists(roomCode)){
        var index = indexOfRoomCode(roomCode);
        var response = JSON.stringify(roomObjects[index].teachers);
        io.sockets.in(socket.id).emit('student-successful', response);
      }else{
        io.sockets.in(socket.id).emit('student-unsuccessful', "Loser");
-     }
+     }*/
    });
    socket.on('student-disconnect', function(data){
      console.log("Doesn't exist");
