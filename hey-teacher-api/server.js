@@ -60,7 +60,7 @@ function RoomObject(roomCode, name){
 }
 function printArray(){
 	for(var i = 0; i < roomObjects.length; i++){
-		roomObjects[i].printRoomstats();
+		roomObjects[i].printRoomStats();
 	}
 }
 
