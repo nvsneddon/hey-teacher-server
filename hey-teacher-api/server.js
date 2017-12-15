@@ -50,35 +50,30 @@ function generateRoomCode(){
   return rmCode;
 }
 
-function RoomObject(roomCode, name){
+function RoomObject(roomCode, name, person_id){
   this.room_id = roomCode;
-  this.teacherName = name;
+  this.teacherName = new Array({
+    "name":name,
+    "person_id":person_id
+  });
   this.waitlist = [];
   this.printRoomStats = function(){
-    console.log("Room ID: " + this.room_id + "\tTeacher: " + this.teacherName);
+    console.log("Room ID: " + this.room_id + "\tTeachers: " + this.teacherName.toString());
   };
 }
+
 function printArray(){
 	for(var i = 0; i < roomObjects.length; i++){
 		roomObjects[i].printRoomStats();
 	}
 }
 
-theEmitter.on('empty-room', (roomNumber) => {
-  //Destroy room
-});
-
 io.on('connection', function(socket){
    console.log('Made socket connection');
-  /* socket.on('teacher-room', function(room){
-     socket.join(room);
-     openRooms.push(room);
-     console.log("New room has been created: " + room);
-   });*/
    socket.on('teacher-connect', function(name){
      console.log(name + " has connected");
      var roomCode = generateRoomCode();
-     roomObjects.push(new RoomObject(roomCode, name));
+     roomObjects.push(new RoomObject(roomCode, name, socket.id));
      socket.join(roomCode);
 	    printArray();
      var emitObject = {
@@ -92,7 +87,13 @@ io.on('connection', function(socket){
      disconnectRoom(roomCode);
    });
    socket.on('student-connect', function(data){
+     var roomCode = JSON.parse(data).roomCode;
+     if(roomCodeExists(roomCode)){
+       var index = indexOfRoomCode(roomCode);
 
+     }else{
+
+     }
    });
    socket.on('student-disconnect', function(data){
 
