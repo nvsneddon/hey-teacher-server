@@ -55,11 +55,16 @@ function RoomObject(roomCode, name, person_id){
   this.teachers = new Array({
     "name":name,
     "person_id":person_id
+
   });
   this.waitlist = [];
   this.printRoomStats = function(){
     console.log("Room ID: " + this.room_id );
-    console.log("Teachers in room: " + this.teachers)
+    for(var i = 0; i < this.teachers.length; i++){
+      for(x in this.teachers[i]){
+        console.log(x + " " + this.teachers[i][x]);
+      }
+    }
   };
 }
 
@@ -74,6 +79,7 @@ io.on('connection', function(socket){
    socket.on('teacher-connect', function(name){
      console.log(name + " has connected");
      var roomCode = generateRoomCode();
+     console.log("Socket ID is " + socket.id);
      roomObjects.push(new RoomObject(roomCode, name, socket.id));
      socket.join(roomCode);
 	    printArray();
