@@ -14,21 +14,24 @@ var roomObjects = [];
 function disconnectRoom(roomNr){
   var index = indexOfRoomCode(roomNr);
   if(index != -1){
+
     roomObjects.splice(index, 1);
   //todo Disconnect others in room from the room
   }
+  console.log(index);
+  printArray();
 }
 
 function roomCodeExists(rmCode){
-  for(x in roomObjects){
-    if (x.room_id === rmCode) return true;
+  for(var i = 0; i < roomObjects.length; i++){
+    if (roomObjects[i].room_id === rmCode) return true;
   }
   return false;
 }
 
 function indexOfRoomCode(rmCode){
   for(var i = 0; i < roomObjects.length; i++){
-    if(roomObjects[i].room_id == rmCode) return i;
+    if(roomObjects[i].room_id === rmCode) return i;
   }
   return -1;
 }
