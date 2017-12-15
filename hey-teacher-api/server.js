@@ -21,7 +21,7 @@ function disconnectRoom(roomNr){
   }
   console.log("The found index is " + index);
   printArray();
-  console.log("The length of the array now is " roomObjects.length);
+  console.log("The length of the array now is " + roomObjects.length);
 }
 
 function roomCodeExists(rmCode){
